@@ -21,7 +21,7 @@
       <main>
           <div class="text-container">
               <h3>M07 Servidor Quiz</h3>
-              <p>QUESTION 1 OF 5</p>
+              <p>QUESTION 1 OF 10</p>
               <p>What does CSS stand for?</p>
           </div>
           <form>
