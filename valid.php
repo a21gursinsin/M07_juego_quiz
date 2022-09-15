@@ -9,13 +9,20 @@
 </head>
 <body>
     <?php
-      if(file_exists('Quiz.json'))
-      {
-        $filename = 'Quiz.json';
-        $data = file_get_contents($filename); 
-        $info = json_decode($data);
+      $filename = 'Quiz.json';
+      $data = file_get_contents($filename); 
+      $info = json_decode($data);
+  
+      $id_answer = $_GET["id_answer"];
+      $id_pregunta = $_GET["id_pregunta"];
+      $id = substr($id_answer, 0,1);
+  
+      if ($info[$id_pregunta]->correctIndex == $id) {
+          echo "validado! =>" . $id;
+      } else {
+  
+          echo "No es correcto ! =>" . $id;
       }
-      $random = rand(0,11);
   ?>
   <button type='button' onclick='location.reload()'>Reload</button>
 	<div class="container">
