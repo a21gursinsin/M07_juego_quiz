@@ -9,13 +9,13 @@
 </head>
 <body>
     <?php
-      if(file_exists('Quiz.json'))
+      if(file_exists('quiz.json'))
       {
-        $filename = 'Quiz.json';
+        $filename = ('quiz.json');
         $data = file_get_contents($filename); 
         $users = json_decode($data);
       }
-      echo count($users);
+      var_dump($users[0]);
   ?>
       <!-- QUIZ ONE -->
   <section class="section-1" id="section-1">
@@ -23,7 +23,7 @@
           <div class="text-container">
               <h3>M07 Servidor Quiz</h3>
               <p>QUESTION 1 OF 10</p>
-              <p>What does CSS stand for? <?php var_dump($users); ?></p>
+              <p>W<?php print_r($users[0]); ?></p>
           </div>
           <form>
               <div class="quiz-options">
