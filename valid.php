@@ -16,13 +16,6 @@
       $id_answer = $_GET["id_answer"];
       $id_pregunta = $_GET["id_pregunta"];
       $id = substr($id_answer, 0,1);
-  
-      if ($info[$id_pregunta]->correctIndex == $id) {
-          echo "validado! =>" . $id;
-      } else {
-  
-          echo "No es correcto ! =>" . $id;
-      }
   ?>
   <button type='button' onclick='location.reload()'>Reload</button>
 	<div class="container">
@@ -31,18 +24,16 @@
 			
 			<hr style="margin-bottom: 20px">
 
-			<p id="question"><?=$info[$random]->question;?></p>
+			<p id="question"><?=$info[$id_pregunta]->question;?></p>
 			
-      <form class="button-grp" action="valid.php" method="get" >
-      <input type ="hidden" name="id_pregunta" value="<?=$random?>"></input>
-        <?php 
-          for ($i = 0; $i <= 3; $i++) {?>
-            <input type ="submit" id="btn0" name="id_answer" value="<?=$i+1 .". ". $info[$random]->answers[$i];?>"></input>
-        <?php
-        
-          }?>  
-      </form>
-			
+            <p id="question"><?php
+                if ($info[$id_pregunta]->correctIndex == $id) {
+                    echo "Correcto! =>" . $id;
+                } else {
+                    echo "No es correcto ! =>" . $id;
+                    echo "La respuesta correcta és: " . $info[$id_pregunta]->correctIndex;
+                }?></p>
+
 			<hr style="margin-top: 50px">
 			
 			<footer>
