@@ -12,12 +12,10 @@
       $filename = 'Quiz.json';
       $data = file_get_contents($filename); 
       $info = json_decode($data);
-  
       $id_answer = $_GET["id_answer"];
       $id_pregunta = $_GET["id_pregunta"];
-      $id = substr($id_answer, 0,1);
+      $id = substr($id_answer, 0,1)-1;
   ?>
-  <button type='button' onclick='location.reload()'>Reload</button>
 	<div class="container">
 		<div id="quiz">
 			<h1>Quiz</h1>
@@ -28,16 +26,16 @@
 			
             <p id="question"><?php
                 if ($info[$id_pregunta]->correctIndex == $id) {
-                    echo "Correcto! =>" . $id;
+                    echo "Correcto! " . $info[$id_pregunta]->answers[$id ];
                 } else {
-                    echo "No es correcto ! =>" . $id;
+                    echo "No es correcto ! =>" . $id+1;
                     echo "La respuesta correcta és: " . $info[$id_pregunta]->correctIndex;
                 }?></p>
 
 			<hr style="margin-top: 50px">
 			
 			<footer>
-				<p id="progress">Question x of y</p>
+				<p id="progress">Question x of 10</p>
 			</footer>
 		</div>
 	</div>

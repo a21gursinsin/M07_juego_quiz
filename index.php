@@ -9,13 +9,35 @@
 </head>
 <body>
     <?php
-      if(file_exists('Quiz.json'))
-      {
+    
+    if(file_exists('Quiz.json')){
         $filename = 'Quiz.json';
         $data = file_get_contents($filename); 
         $info = json_decode($data);
+    }
+
+    function alterarPreguntas() {
+      $listPreguntas=array();
+       
+      for ($i = 0; $i <= 9; $i++) {
+        $n=rand(0, 11);echo($n);
+        if($i>1){
+          for ($j = 0; $j < $i; $j++) {
+            if($listPreguntas[$j]===$n){
+              $i--;
+              $j=$i;
+            }else {
+              array_push($listPreguntas,$n);
+            }
+          }
+        }else {
+          array_push($listPreguntas,$n);
+        }
       }
-      $random = rand(0,11);
+      for ($i = 0; $i <= 9; $i++) {var_dump($listPreguntas[$i]);}
+    }
+
+    alterarPreguntas();
   ?>
   <button type='button' onclick='location.reload()'>Reload</button>
 	<div class="container">
@@ -30,7 +52,7 @@
       <input type ="hidden" name="id_pregunta" value="<?=$random?>"></input>
         <?php 
           for ($i = 0; $i <= 3; $i++) {?>
-            <input type ="submit" id="btn0" name="answer" value="<?=$i+1 ." ". $info[$random]->answers[$i];?>"></input>
+            <input type ="submit" id="btn0" name="id_answer" value="<?=$i+1 .". ". $info[$random]->answers[$i];?>"></input>
         <?php
         
           }?>  
@@ -39,7 +61,7 @@
 			<hr style="margin-top: 50px">
 			
 			<footer>
-				<p id="progress">Question x of y</p>
+				<p id="progress">Question x of 10</p>
 			</footer>
 		</div>
 	</div>
