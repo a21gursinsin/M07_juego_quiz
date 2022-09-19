@@ -30,7 +30,7 @@
       <input type ="hidden" name="id_pregunta" value="<?=$random?>"></input>
         <?php 
           for ($i = 0; $i <= 3; $i++) {?>
-            <input type ="submit" id="btn0" name="id_answer" value="<?=$i+1 .". ". $info[$random]->answers[$i];?>"></input>
+            <input type ="submit" id="btn0" name="answer" value="<?=$i+1 ." ". $info[$random]->answers[$i];?>"></input>
         <?php
         
           }?>  
