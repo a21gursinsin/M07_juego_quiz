@@ -18,7 +18,7 @@
       <label id="name">Nom:</label>
       <input type="text" id="usuario"></input>
       <label>Quantes preguntes vols?</label>
-      <form action="/getPreguntes.php" method="get">
+      <form action="./getPreguntes.php" method="get">
         <select id="pregunta" name ="Npreguntas">
           <option>1</option>
           <option>2</option>
@@ -32,7 +32,7 @@
           <option>10</option>
           <option>11</option>
           <option>12</option>
-          </select=>
+          </select>
           <input type="submit" value="Jugar" class="button"></input>
         </form>
     </div>
