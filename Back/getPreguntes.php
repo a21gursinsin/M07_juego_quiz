@@ -1,5 +1,15 @@
 <?php
-$Npreguntas = $_GET["Npreguntas"];
+session_start();
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+
+$Npreguntas = intval($_GET["np"]);
+echo $Npreguntas;
+$data = file_get_contents("Quiz.json");
+$quiz = json_decode($data);
+
 function alterarPreguntas($Npreguntas)
 {
   $listPreguntas = array();
@@ -15,14 +25,11 @@ function alterarPreguntas($Npreguntas)
 }
 $listPreguntas = alterarPreguntas($Npreguntas);
 
-?>
-<script>
-  fetch('http://localhost/gur/M07_JUEGO_QUIZ/Quiz.json')
-    .then(response => response.json())
-    .then(data => datos = data);
-</script>
+$resultat = '{"questions": [';
 
-
-<script>
-  window.location = "question.php";
-</script>
+for ($i = 0; $i < $Npreguntas; $i++) {
+  $resultat .= '{"question":' . json_encode($quiz[$listPreguntas[$i]]->question) . ',';
+  $resultat .= '"answers":' . json_encode($quiz[$listPreguntas[$i]]->answers) . '}';
+}
+$resultat .= "]}";
+echo $resultat;

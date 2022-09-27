@@ -6,9 +6,6 @@ let tuPartida = {
 }
 
 function init() {
-  fetch('http://localhost/dadesQuiz.php?np=3')
-        .then((response) => response.json())
-        .then((data) => datos = data);
   let user = localStorage.getItem("usuario");
   if (user != null && user != "") {
     document.getElementById("name").innerHTML =  "<h1>Welcome " + user+"</h1>";
@@ -18,12 +15,16 @@ function init() {
 }
 
 function jugar() {
-  if (localStorage.getItem("usuario") == "" || localStorage.getItem("usuario") == null) {
-    localStorage.setItem("usuario", document.getElementById("usuario").value);
-  }
-  
+  document.getElementById("form").style.display = "none";
+  document.getElementById("titul").style.display = "block";
+
   let nPreguntas = parseInt(document.getElementById("pregunta").value); 
-  pregunta(nPreguntas);
+  
+  fetch('../Back/getPreguntes.php/np='+nPreguntas)
+        .then((response) => response.json())
+        .then((data) => pregunta(data) );
+        
+        
 }
 
 function cambiarUsuario() {
@@ -31,7 +32,8 @@ function cambiarUsuario() {
   location.reload()
 }
 
-function pregunta(nPreguntas) {
+function pregunta(data, nPreguntas) {
+  datos = data;
   let htmlStr = `<div class="container">`;
   for (let index = 0; index < nPreguntas; index++) {
     htmlStr += `<form class="quiz-form">  <div class="quiz-form__quiz"> <p id="quiz-form__question">${index + 1 + ". " + datos.questions[index].question}</p></div>`;
