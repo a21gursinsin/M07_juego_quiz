@@ -6,7 +6,6 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 $Npreguntas = intval($_GET["np"]);
-echo $Npreguntas;
 $data = file_get_contents("./Quiz.json");
 $quiz = json_decode($data);
 
@@ -29,7 +28,7 @@ $resultat = '{"questions": [';
 
 for ($i = 0; $i < $Npreguntas; $i++) {
   $resultat .= '{"question":' . json_encode($quiz[$listPreguntas[$i]]->question) . ',';
-  $resultat .= '"answers":' . json_encode($quiz[$listPreguntas[$i]]->answers) . '}';
+  $resultat .= '"answers":' . json_encode($quiz[$listPreguntas[$i]]->answers) . '} ';
 }
-$resultat .= "]}";
+$resultat .= ']}';
 echo $resultat;

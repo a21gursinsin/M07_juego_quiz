@@ -21,22 +21,20 @@ function jugar() {
   
   fetch('../Back/getPreguntes.php?np='+nPreguntas)
         .then(response => response.json())
-        .then(data => console.log(data));
-        
-        
+        .then(data => pregunta(data,nPreguntas));  
 }
 
 function pregunta(data, nPreguntas) {
   datos = data;
   let htmlStr = `<div class="container">`;
   for (let index = 0; index < nPreguntas; index++) {
-    htmlStr += `<form class="quiz-form">  <div class="quiz-form__quiz"> <p id="quiz-form__question">${index + 1 + ". " + datos.questions[index].question}</p></div>`;
+    htmlStr += `<form class="quiz-form">  <div class="quiz-form__quiz"> <p id="quiz-form__question">${index + 1 + ". " + datos.questions[index].question}</p></div>`
     for (let j = 0; j < 4; j++) {
-      htmlStr += `<label class="quiz-form__ans" onclick="selection(${index}, ${j}, ${nPreguntas})" > <span type="button" class="text" >${datos.questions[index].answers[j]}</span></label>`;
+      htmlStr += `<label class="quiz-form__ans" onclick="selection(${index}, ${j}, ${nPreguntas})" > <span type="button" class="text" >${datos.questions[index].answers[j]}</span></label>`
     }
-    htmlStr += `</form>`;
+    htmlStr += `</form>`
   }
-  htmlStr += `</div>`;
+  htmlStr += `</div>`
   document.getElementById("listadoPreguntas").innerHTML = htmlStr;
 }
 
@@ -45,7 +43,7 @@ function selection(pregunta, respuesta, nPreguntas) {
     tuPartida.nrespuestas++;
   }
   tuPartida.respuestas[pregunta] = respuesta;
-  renderEstado(nPreguntas);
+  console.log (tuPartida.respuestas);
 }
 
 function renderEstado(nPreguntas) {
