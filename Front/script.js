@@ -10,7 +10,6 @@ function init() {
   if (user != null && user != "") {
     document.getElementById("name").innerHTML =  "<h1>Welcome " + user+"</h1>";
     document.getElementById("usuario").style.display = "none";
-    document.getElementById("cambiarUsuario").style.display = "block";
   }
 }
 
@@ -20,16 +19,11 @@ function jugar() {
 
   let nPreguntas = parseInt(document.getElementById("pregunta").value); 
   
-  fetch('../Back/getPreguntes.php/np='+nPreguntas)
-        .then((response) => response.json())
-        .then((data) => pregunta(data) );
+  fetch('../Back/getPreguntes.php?np='+nPreguntas)
+        .then(response => response.json())
+        .then(data => console.log(data));
         
         
-}
-
-function cambiarUsuario() {
-  localStorage.setItem("usuario", "");
-  location.reload()
 }
 
 function pregunta(data, nPreguntas) {

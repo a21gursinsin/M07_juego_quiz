@@ -7,7 +7,7 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 $Npreguntas = intval($_GET["np"]);
 echo $Npreguntas;
-$data = file_get_contents("Quiz.json");
+$data = file_get_contents("./Quiz.json");
 $quiz = json_decode($data);
 
 function alterarPreguntas($Npreguntas)
