@@ -266,3 +266,54 @@ input[type="radio"]:active + .design::after {
   }
 
 }
+
+#navbar{
+  position: fixed;
+  padding-left: 2;
+  top: 15%;
+  left: 60rem;
+  right: 2%;
+  height: 23rem;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255,0.7);
+  
+  text-align: left;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+  
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}    
+strong{
+  font-size: 2em;
+  width: 250px;
+  margin-left: 37%;
+  line-height: 70px;
+  color: black;
+}
+#count {
+  position: fixed;
+  padding-left: 2;
+  top: 67%;
+  left: 109rem;
+  right: 2%;
+  height: 30rem;
+  border-radius: 5px;
+}  
+#clickme {
+  padding: 20px;
+  background: transparent;
+  text-shadow: 1px 1px 1px #202020;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 5px;
+  background: rgb(6,14,131);
+  background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+  border: none;
+}

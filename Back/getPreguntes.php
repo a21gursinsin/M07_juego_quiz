@@ -29,6 +29,10 @@ $resultat = '{"questions": [';
 for ($i = 0; $i < $Npreguntas; $i++) {
   $resultat .= '{"question":' . json_encode($quiz[$listPreguntas[$i]]->question) . ',';
   $resultat .= '"answers":' . json_encode($quiz[$listPreguntas[$i]]->answers) . '} ';
+  if ($i!= $Npreguntas-1) {
+    $resultat .= ", ";
+  }
 }
 $resultat .= ']}';
 echo $resultat;
+

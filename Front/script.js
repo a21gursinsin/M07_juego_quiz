@@ -5,15 +5,9 @@ let tuPartida = {
   respuestas: []
 }
 
-function init() {
-  let user = localStorage.getItem("usuario");
-  if (user != null && user != "") {
-    document.getElementById("name").innerHTML =  "<h1>Welcome " + user+"</h1>";
-    document.getElementById("usuario").style.display = "none";
-  }
-}
-
 function jugar() {
+  document.getElementById("navbar").style.display = "block";
+  document.getElementById("count").style.display = "block";
   document.getElementById("form").style.display = "none";
   document.getElementById("titul").style.display = "block";
 
@@ -22,10 +16,11 @@ function jugar() {
   fetch('../Back/getPreguntes.php?np='+nPreguntas)
         .then(response => response.json())
         .then(data => pregunta(data,nPreguntas));  
-}
+ }
 
 function pregunta(data, nPreguntas) {
   datos = data;
+  console.log(datos)
   let htmlStr = `<div class="container">`;
   for (let index = 0; index < nPreguntas; index++) {
     htmlStr += `<form class="quiz-form">  <div class="quiz-form__quiz"> <p id="quiz-form__question">${index + 1 + ". " + datos.questions[index].question}</p></div>`
@@ -44,6 +39,7 @@ function selection(pregunta, respuesta, nPreguntas) {
   }
   tuPartida.respuestas[pregunta] = respuesta;
   console.log (tuPartida.respuestas);
+  renderEstado(nPreguntas);
 }
 
 function renderEstado(nPreguntas) {
@@ -63,6 +59,3 @@ function renderEstado(nPreguntas) {
   document.getElementById("count").innerHTML = htmlCount;
 }
 
-
-/*fetch('url')
-        .then*/
