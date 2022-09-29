@@ -71,14 +71,8 @@ label {
   margin-bottom: 8px;
 }
 
-label.light {
-  font-weight: 300;
-  display: inline;
-}
-
 .container {
-  max-width: 50rem;
-  width: 50rem;
+  width: 150rem;
   margin-top: 2rem ;
   margin-left: 5rem ;
 }

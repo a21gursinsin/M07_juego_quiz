@@ -23,16 +23,16 @@ function alterarPreguntas($Npreguntas)
   return $listPreguntas;
 }
 $listPreguntas = alterarPreguntas($Npreguntas);
+$_SESSION['listPreguntas'] = $listPreguntas;
 
 $resultat = '{"questions": [';
 
 for ($i = 0; $i < $Npreguntas; $i++) {
   $resultat .= '{"question":' . json_encode($quiz[$listPreguntas[$i]]->question) . ',';
   $resultat .= '"answers":' . json_encode($quiz[$listPreguntas[$i]]->answers) . '} ';
-  if ($i!= $Npreguntas-1) {
+  if ($i != $Npreguntas - 1) {
     $resultat .= ", ";
   }
 }
 $resultat .= ']}';
 echo $resultat;
-

@@ -25,7 +25,7 @@ function pregunta(data, nPreguntas) {
   for (let index = 0; index < nPreguntas; index++) {
     htmlStr += `<form class="quiz-form">  <div class="quiz-form__quiz"> <p id="quiz-form__question">${index + 1 + ". " + datos.questions[index].question}</p></div>`
     for (let j = 0; j < 4; j++) {
-      htmlStr += `<label class="quiz-form__ans" onclick="selection(${index}, ${j}, ${nPreguntas})" > <span type="button" class="text" >${datos.questions[index].answers[j]}</span></label>`
+      htmlStr += `<label id="answerbutton" class="quiz-form__ans" onclick="selection(${index}, ${j}, ${nPreguntas})" > <span type="button" class="text" >${datos.questions[index].answers[j]}</span></label>`
     }
     htmlStr += `</form>`
   }
@@ -38,7 +38,6 @@ function selection(pregunta, respuesta, nPreguntas) {
     tuPartida.nrespuestas++;
   }
   tuPartida.respuestas[pregunta] = respuesta;
-  console.log (tuPartida.respuestas);
   renderEstado(nPreguntas);
 }
 
@@ -52,10 +51,39 @@ function renderEstado(nPreguntas) {
   }
   htmlStr += "</ul>";
 
-  if (tuPartida.nrespuestas >= nPreguntas) {
+  if (tuPartida.nrespuestas == nPreguntas) {
     htmlStr += `<input class="submit" type="submit" value="Enviar" onclick=""/>`;
   }
   document.getElementById("navbar").innerHTML = htmlStr;
   document.getElementById("count").innerHTML = htmlCount;
 }
 
+function checkanswer() {
+  let formData = new FormData();
+  formData.append('dades', JSON.stringify({tuPartida}));
+
+    fetch("../Back/valid.php", {
+            body: formData,
+            method: "post"
+        })
+        .then((response) => response.json())
+        .then((data) => console.log(data)); 
+}
+
+function renderEstado(nPreguntas) {
+  htmlCount = `<button class="submit1">${tuPartida.nrespuestas} / ${nPreguntas}</button>`;
+  htmlStr = `<strong>Has Seleccionat</strong><br> <ul>`;
+  for (let i = 0; i < tuPartida.respuestas.length; i++) {
+    if (tuPartida.respuestas[i] != undefined) {
+      htmlStr += `<p style="font-size: 16px; color:black">   ${i + 1}. ${datos.questions[i].question} --> <b> ${datos.questions[i].answers[tuPartida.respuestas[i]]} </b></p>`;
+    }
+  }
+  htmlStr += "</ul>";
+
+  if (tuPartida.nrespuestas == nPreguntas) {
+    console.log(nPreguntas)
+    htmlStr += `<input class="submit" type="submit" value="Enviar" onclick="checkanswer()"/>`;
+  }
+  document.getElementById("navbar").innerHTML = htmlStr;
+  document.getElementById("count").innerHTML = htmlCount;
+}
