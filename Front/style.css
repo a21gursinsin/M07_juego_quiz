@@ -10,7 +10,7 @@
 }
 
 body {
-  background: #252c4a;
+  background: #7380b9;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   color: #fff;
@@ -117,17 +117,25 @@ label.light {
 
 .quiz-form__ans {
   border-radius: 0.8rem;
-  border: 4px solid #264868;
+  border: 4px solid #2d355a;
   padding: 0.8rem;
   margin-bottom: 2rem;
   color: #ffffff;
   position: relative;
   display: flex;
+  margin-left: 2.5cm;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
   cursor: pointer;
 }
+
+.quiz-form__ans:hover{
+  border: 4px solid #cce8ff;
+  background-color: #445288;
+  box-shadow: 10px 20px 49px -8px rgba(171,178,255,1);
+}
+
 
 .quiz-form__ans:not(:last-child) {
   margin-bottom: 0.5rem;
@@ -213,14 +221,14 @@ input[type="radio"]:active + .design::after {
   border: none;
   border-radius:100vh;
   padding: 0.8rem 7.5rem;
-  background: #117eeb;
+  background: #889df8;
   color: #fff;
   font-family: inherit;
   text-transform: uppercase;
   font-size: 1rem;
   position: fixed;
   padding-left: 2;
-  top: 35rem;
+  top: 3rem;
   left: 97rem;
   right: 2%;
   font-weight: 300;
@@ -266,26 +274,24 @@ input[type="radio"]:active + .design::after {
   }
 
 }
+p{
+  margin: 1cm 1cm;
+}
 
 #navbar{
   position: fixed;
   padding-left: 2;
+  height: fit-content;
   top: 15%;
   left: 60rem;
   right: 2%;
-  height: 23rem;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255,0.7);
-  
+  background-color: rgb(183, 208, 247);
+  box-shadow: 10px 20px 49px -8px rgb(0, 0, 0);
   text-align: left;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
-  
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }    
@@ -295,6 +301,7 @@ strong{
   margin-left: 37%;
   line-height: 70px;
   color: black;
+  letter-spacing: 2px;
 }
 #count {
   position: fixed;
