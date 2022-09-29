@@ -4,6 +4,6 @@
     $info = json_decode($data);
     session_start();
     $listPreguntas = $_SESSION['listPreguntas'];
-    $npreguntas = $_SESSION['npreguntas'];
-    echo json_encode($listPreguntas);
+    $jugada = json_decode($_POST["dades"]);
+    echo $jugada;
     ?>
