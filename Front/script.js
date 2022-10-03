@@ -20,7 +20,6 @@ function jugar() {
 
 function pregunta(data, nPreguntas) {
   datos = data;
-  console.log(datos)
   let htmlStr = `<div class="container">`;
   for (let index = 0; index < nPreguntas; index++) {
     htmlStr += `<form class="quiz-form">  <div class="quiz-form__quiz"> <p id="quiz-form__question">${index + 1 + ". " + datos.questions[index].question}</p></div>`
@@ -64,7 +63,7 @@ function checkanswer() {
 
     fetch("../Back/valid.php", {
             body: formData,
-            method: "post"
+            method: "post",
         })
         .then((response) => response.json())
         .then((data) => console.log(data)); 
@@ -81,7 +80,6 @@ function renderEstado(nPreguntas) {
   htmlStr += "</ul>";
 
   if (tuPartida.nrespuestas == nPreguntas) {
-    console.log(nPreguntas)
     htmlStr += `<input class="submit" type="submit" value="Enviar" onclick="checkanswer()"/>`;
   }
   document.getElementById("navbar").innerHTML = htmlStr;
