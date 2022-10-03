@@ -40,35 +40,20 @@ function selection(pregunta, respuesta, nPreguntas) {
   renderEstado(nPreguntas);
 }
 
-function renderEstado(nPreguntas) {
-  htmlCount = `<button class="submit1">${tuPartida.nrespuestas} / ${nPreguntas}</button>`;
-  htmlStr = `<strong>Has Seleccionat</strong><br> <ul>`;
-  for (let i = 0; i < tuPartida.respuestas.length; i++) {
-    if (tuPartida.respuestas[i] != undefined) {
-      htmlStr += `<p style="font-size: 16px; color:black">   ${i + 1}. ${datos.questions[i].question} --> <b> ${datos.questions[i].answers[tuPartida.respuestas[i]]} </b></p>`;
-    }
-  }
-  htmlStr += "</ul>";
-
-  if (tuPartida.nrespuestas == nPreguntas) {
-    htmlStr += `<input class="submit" type="submit" value="Enviar" onclick=""/>`;
-  }
-  document.getElementById("navbar").innerHTML = htmlStr;
-  document.getElementById("count").innerHTML = htmlCount;
-}
-
 function checkanswer() {
   let formData = new FormData();
-  formData.append('dades', JSON.stringify({tuPartida}));
-
+  formData.append('datos', tuPartida);
+  
     fetch("../Back/valid.php", {
-            body: formData,
             method: "post",
+            body: JSON.stringify(formData),  
         })
         .then((response) => response.json())
-        .then((data) => console.log(data)); 
+        .then((data) => mostrar(data));
 }
-
+function mostrar(data) {
+  console.log(data)
+}
 function renderEstado(nPreguntas) {
   htmlCount = `<button class="submit1">${tuPartida.nrespuestas} / ${nPreguntas}</button>`;
   htmlStr = `<strong>Has Seleccionat</strong><br> <ul>`;
@@ -81,6 +66,7 @@ function renderEstado(nPreguntas) {
 
   if (tuPartida.nrespuestas == nPreguntas) {
     htmlStr += `<input class="submit" type="submit" value="Enviar" onclick="checkanswer()"/>`;
+    
   }
   document.getElementById("navbar").innerHTML = htmlStr;
   document.getElementById("count").innerHTML = htmlCount;
