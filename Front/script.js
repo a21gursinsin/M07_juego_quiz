@@ -42,17 +42,19 @@ function selection(pregunta, respuesta, nPreguntas) {
 
 function checkanswer() {
   let formData = new FormData();
-  formData.append('datos', tuPartida);
+  formData.append('dades', JSON.stringify(tuPartida));
   
     fetch("../Back/valid.php", {
             method: "post",
-            body: JSON.stringify(formData),  
+            body: formData,  
         })
         .then((response) => response.json())
         .then((data) => mostrar(data));
 }
 function mostrar(data) {
-  console.log(data)
+  document.getElementById("listadoPreguntas").style.display = "none";
+  document.getElementById("total").style.display = "block";
+  document.getElementById("total").innerHTML=`<p>Has encertat: `+data +" / "+ tuPartida.nrespuestas+`</p>`;
 }
 function renderEstado(nPreguntas) {
   htmlCount = `<button class="submit1">${tuPartida.nrespuestas} / ${nPreguntas}</button>`;
